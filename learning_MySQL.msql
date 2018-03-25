@@ -1,3 +1,6 @@
+https://www.javatpoint.com/how-to-install-mysql
+https://dev.mysql.com/doc/refman/5.7/en/linux-installation-docker.html
+
 learning MySQL
 
 MySQL is becoming so popular because of these following reasons:
@@ -131,3 +134,242 @@ TINYBLOB 	Maximum size of 255 bytes.
 BLOB(size) 	Maximum size of 65,535 bytes.
 MEDIUMBLOB 	Maximum size of 16,777,215 bytes.
 LONGTEXT 	Maximum size of 4gb or 4,294,967,295 characters.
+
+
+////////////////////////////////////////
+/                                      /
+/                                      /
+/                                      /
+////////////////////////////////////////
+How to install MySQL
+
+
+https://dev.mysql.com/doc/refman/5.7/en/which-version.html
+
+
+mysql-5.7.1-m1
+5 is the major version
+7 is the minor
+together its the series #
+1 rep the the amt of bugs higher the # less bugs
+
+mN milstone, thtroughly tested Features'
+rc Rekease Candidate fixes earlier bugs
+no suffix indicates stable GA
+
+consider install from a source distribution
+
+
+    You want to install MySQL at some explicit location. The standard binary distributions are ready to run at any installation location, but you might require even more flexibility to place MySQL components where you want.
+
+    You want to configure mysqld with features that might not be included in the standard binary distributions. Here is a list of the most common extra options used to ensure feature availability:
+
+        -DWITH_LIBWRAP=1 for TCP wrappers support.
+
+        -DWITH_ZLIB={system|bundled} for features that depend on compression
+
+        -DWITH_DEBUG=1 for debugging support
+
+    For additional information, see Section 2.9.4, “MySQL Source-Configuration Options”.
+
+    You want to configure mysqld without some features that are included in the standard binary distributions. For example, distributions normally are compiled with support for all character sets. If you want a smaller MySQL server, you can recompile it with support for only the character sets you need.
+
+    You want to read or modify the C and C++ code that makes up MySQL. For this purpose, obtain a source distribution.
+
+    Source distributions contain more tests and examples than binary distributions.
+
+
+https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/
+////////////////////////////////////////
+/                                      /
+/                                      /
+/                                      /
+////////////////////////////////////////
+Starting and Stopping the MySQL Server
+*it automattically starts after installation
+status
+  sudo service mysql status
+stop
+  sudo service mysql stop
+restart
+  sudo service mysql start
+
+  avoid Using
+    akonadi-backend-mysql, handlersocket-mysql-5.5, and zonemind
+
+
+    reference :
+      1. https://www.javatpoint.com/how-to-install-mysql
+      2. https://dev.mysql.com/doc/refman/5.7/en/installing.html
+      3.  https://www.mysql.com/support/supportedplatforms/database.html
+      4. https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/
+      5. https://dev.mysql.com/doc/refman/5.7/en/upgrading.html
+      6. https://dev.mysql.com/doc/refman/5.7/en/mysql-cluster-install-configuration.html
+      7. https://dev.mysql.com/doc/refman/5.7/en/mysql-cluster-installation.html#mysql-cluster-install-nodes-hosts
+
+      steps
+
+        checked 3 to see if MySQL ver 5.7 was supported on ubuntu 16.04 and it was
+        I have to download it before I install so lets go ahead
+
+        Download
+        4.
+          Adding the MySQL APT Repository
+          add the MySQL APT repository to your system's software repository list
+          shell
+            sudo dpkg -i ./mysql-apt-config_0.8.9-1_all.deb
+            selected ok
+            sudo apt-get update
+            Once the MySQL APT repository is enabled on your system, you will no longer be able to install
+            any MySQL packages from your platform's native software repositories until the MySQL APT repository is disabled.
+
+
+          Installing MySQL with APT
+             sudo apt-get install mysql-server
+             password availabs password but with 22
+
+          Selecting a Major Release Version and changing MySQL plugins
+          you can switch to another supported major release series
+           at any time by reconfiguring the configuration package you have installed
+           sudo dpkg-reconfigure mysql-apt-config
+           latest version will be installed when you use apt-get
+
+
+           Installing Additional MySQL Products and Components
+
+              sudo apt-get update
+           to install a desired package
+              sudo apt-get install [package-name]
+           list of package
+              https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/#repo-qg-apt-available
+
+
+          Upgrading MySQL with the MySQL APT Repository
+          please return here when ready
+              https://dev.mysql.com/doc/refman/5.7/en/upgrading.html
+
+          Use the MySQL APT repository to perform an in-place upgrade for your MySQL installation
+          (that is, replacing the old version and then running the new version off the old data files) by following these steps:
+
+                Make sure you already have the MySQL APT repository on your system's repository list
+                Make sure you have the most up-to-date package information on the MySQL APT repository by running:
+                       sudo apt-get update
+
+                As a general rule, to upgrade from one release series to another,
+                go to the next series rather than skipping a series.
+
+                to upgrade
+                    sudo apt-get install mysql-server
+
+                to upgrade any packages
+                    sudo apt-get install package-name
+
+                to see package names
+                     dpkg -l | grep mysql | grep ii
+
+                The MySQL server always restarts after an update by APT. Once the server restarts, you should run mysql_upgrade
+                to check and possibly resolve any incompatibilities between the old data and the upgraded software
+
+            Replacing a Native Distribution of MySQL Using the MySQL APT Repository
+              backup your databases
+
+                add MySQL APT repo and select release series
+
+                Replacing the Native Distribution by an APT Update
+                    do not apt-get purge the old  MySQL packages
+
+            Replacing a MySQL Server Installed by a Direct deb Package Download
+
+
+            Removing MySQL with APT
+              first remove the servers
+                  sudo apt-get remove mysql-server
+
+              then remove any other software
+                  sudo apt-get autoremove
+
+              then remove chosen packages
+                  sudo apt-get remove package-name
+
+
+            Installing MySQL NDB Cluster Using the APT Repository
+                If you already have the MySQL server or MySQL NDB Cluster installed
+                on your system, make sure it is stopped and you have your data and configuration files backed up before proceeding.
+                The MySQL NDB Cluster packages have dependencies on the python-paramiko and libclass-methodmaker-perl packages,
+                which are currently NOT installed automatically when you install the NDB Cluster packages;
+                install those required packages yourself with this command before installing the NDB Cluster packages:
+                    sudo apt-get install python-paramiko libclass-methodmaker-perl
+
+                  Adding the MySQL APT Repository for MySQL NDB Cluster
+                       sudo dpkg-reconfigure mysql-apt-config
+                      chose MySQL Server & Cluster
+                          MySQL Cluster contains MySQL server
+
+                  Installing MySQL NDB Cluster
+                        minimal installation
+                            components for SQL nodes
+                                sudo apt-get install mysql-community-server
+                              was not asked about a password
+
+                            Install the executables for management nodes:
+                                sudo apt-get install mysql-cluster-community-management-server
+                                found: did not exist
+                                      result : sudo apt-get install mysql-apt-config
+                                               sudo apt-get update
+                                               sudo apt-get install mysql-cluster-community-server
+                                               rmvd mysql-community-server
+
+                            Install the executables for data nodes:
+                                sudo apt-get install mysql-cluster-community-data-node
+
+
+                  Configuring and Starting MySQL NDB Cluster
+
+                    Initial Configuration of NDB Cluster
+                    6.
+                        try to look at 7
+
+                    do not do I am not gunna attempt to use VM till I understand them, and I do not have 4 computers
+
+                  Installing Additional MySQL NDB Cluster Products and Components
+                      Currently, not all components required for running the MySQL NDB Cluster test suite are installed automatically when you install the test suite package (mysql-cluster-community-test). Install the following packages with apt-get install before you run the test suite:
+
+                          mysql-cluster-community-auto-installer
+
+                          mysql-cluster-community-management-server
+
+                          mysql-cluster-community-data-node
+
+                          mysql-cluster-community-memcached
+
+                          mysql-cluster-community-java
+
+                          ndbclient-dev
+
+
+                    if you have an up[date] error go here to appendix C
+
+                    Post-installation
+                      none needed you used apt-get to install
+
+////////////////////////////////////////
+/                                      /
+/                                      /
+/                                      /
+////////////////////////////////////////
+
+      When you forget your password
+      https://coderwall.com/p/j9btlg/reset-the-mysql-5-7-root-password-in-ubuntu-16-04-lts
+      sudo service mysql stop
+      sudo mkdir /var/run/mysqld
+      sudo chown mysql: /var/run/mysqld
+
+      this command must be run in tmux and you will need to continue from another terminal window
+      -------------------------------------------------------------------------------------
+      sudo mysqld_safe --skip-grant-tables --skip-networking &
+      ----------------------------------------------------------------------------------
+      mysql -uroot mysql
+      UPDATE mysql.user SET authentication_string=PASSWORD('YOURNEWPASSWORD'), plugin='mysql_native_password' WHERE User='root' AND Host='%';
+      EXIT;
+      sudo mysqladmin -S /var/run/mysqld/mysqld.sock shutdown
+      sudo service mysql start
