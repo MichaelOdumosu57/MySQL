@@ -1,0 +1,133 @@
+learning MySQL
+
+MySQL is becoming so popular because of these following reasons:
+
+    MySQL is an open-source database so you don't have to pay a single penny to use it.
+    MySQL is a very powerful program so it can handle a large set of functionality of the most expensive and powerful database packages.
+    MySQL is customizable because it is an open source database and the open-source GPL license facilitates programmers to modify the SQL software according to their own specific environment.
+    MySQL is quicker than other databases so it can work well even with the large data set.
+    MySQL supports many operating systems with many languages like PHP, PERL, C, C++, JAVA, etc.
+    MySQL uses a standard form of the well-known SQL data language.
+    MySQL is very friendly with PHP, the most popular language for web development.
+    MySQL supports large databases, up to 50 million rows or more in a table. The default file size limit for a table is 4GB, but you can increase this (if your operating system can handle it) to a theoretical limit of 8 million terabytes (TB).
+
+
+
+////////////////////////////////////////
+/                                      /
+/                                      /
+/                                      /
+////////////////////////////////////////
+MY SQL HISTORY
+
+  1995 	MySQL AB founded by Michael Widenius (Monty), David Axmark and Allan Larsson in Sweden.
+  2000 	MySQL goes open source and releases software under the terms of the GPL. Revenues dropped 80% as a result, and it took a year to make up for it.
+  2001 	Marten Mickos elected CEO at age 38. Marten was the CEO of a number of nordic companies before joining MySQL, and comes with a sales and marketing background. 2 million active installations. Raised series a with undisclosed amount from Scandinavian venture capitalists. Estimated to be around $1 to $2 million.
+  2002 	MySQL launched us headquarters in addition to Swedish headquarters. 3 million active users. Ended the year with $6.5 million in revenue with 1,000 paying customers.
+  2003 	Raised a $19.5 million series b from benchmark capital and index ventures. 4 million active installations and over 30,000 downloads per day. Ended the year with $12 million in revenue.
+  2004 	With the main revenue coming from the oem dual-licensing model, MySQL decides to move more into the enterprise market and to focus more on recurring revenue from end users rather than one-time licensing fees from their oem partners. Ended the year with $20 million in revenue.
+  2005 	MySQL launched the MySQL network modeled after the Redhat network. the MySQL network is a subscription service targeted at end users that provides updates, alerts, notifications, and product-level support designed to make it easier for companies to manage hundreds of MySQL servers. MySQL 5 ships and includes many new features to go after enterprise users (e.g. stored procedures, triggers, views, cursors, distributed transactions, federated storage engines, etc.) Oracle buys innobase, the 4-person and a Finland's company behind MySQL's innodb storage backend.
+  ended the year with $34 million in revenue based on 3400 customers.
+  2006
+  Marten Mickos confirms that oracle tried to buy MySQL. Oracle' CEO Larry Ellison commented: "we've spoken to them, in fact we've spoken to almost everyone. Are we interested? It's a tiny company. I think the revenues from MySQL are between $30 million and $40 million. Oracle's revenue next year is $15 billion." Oracle buys sleepycat, the company that provides MySQL with the Berkeley db transactional storage engine. Marten Mickos announces that they are making MySQL ready for an IPO in 2008 on an projected $100 million in revenues. 8 million active installations. MySQL has 320 employees in 25 countries, 70 percent of whom work from home, raised a $18 million series c based on a rumored valuation north of $300 million. MySQL is estimated to have a 33% market share measured in install base and 0.2% market share measured in revenue (the database market was a $15 billion market in 2006). Ended the year with $50 million in revenue.
+  2007 	Ended the year with $75 million in revenue.
+  2008 	Sun Microsystems acquired MySQL AB for approximately $1 billion. Michael Widenius (Monty) and David Axmark, two of MySQL AB's co-founders, begin to criticize Sun publicly and leave Sun shortly after.
+  2009 	Marten Mickos leaves Sun and becomes entrepreneur-in-residence at Benchmark Capital. Sun has now lost the business and spiritual leaders that turned MySQL into a success.
+  Sun Microsystems and Oracle announced that they have entered into a definitive agreement under which Oracle will acquire Sun common stock for $9.50 per share in cash. The transaction is valued at approximately $7.4 billion.
+
+
+
+  ////////////////////////////////////////
+  /                                      /
+  /                                      /
+  /                                      /
+  ////////////////////////////////////////
+  MySQL Features
+
+
+    Relational Database Management System (RDBMS): MySQL is a relational database management system.
+    Easy to use: MySQL is easy to use. You have to get only the basic knowledge of SQL. You can build and interact with MySQL with only a few simple SQL statements.
+    It is secure: MySQL consist of a solid data security layer that protects sensitive data from intruders. Passwords are encrypted in MySQL.
+    Client/ Server Architecture: MySQL follows a client /server architecture. There is a database server (MySQL) and arbitrarily many clients (application programs), which communicate with the server; that is, they query data, save changes, etc.
+    Free to download: MySQL is free to use and you can download it from MySQL official website.
+    It is scalable: MySQL can handle almost any amount of data, up to as much as 50 million rows or more. The default file size limit is about 4 GB. However, you can increase this number to a theoretical limit of 8 TB of data.
+    Compatibale on many operating systems: MySQL is compatible to run on many operating systems, like Novell NetWare, Windows* Linux*, many varieties of UNIX* (such as Sun* Solaris*, AIX, and DEC* UNIX), OS/2, FreeBSD*, and others. MySQL also provides a facility that the clients can run on the same computer as the server or on another computer (communication via a local network or the Internet).
+    Allows roll-back: MySQL allows transactions to be rolled back, commit and crash recovery.
+    High Performance: MySQL is faster, more reliable and cheaper because of its unique storage engine architecture.
+    High Flexibility: MySQL supports a large number of embedded applications which makes MySQL very flexible.
+    High Productivity: MySQL uses Triggers, Stored procedures and views which allows the developer to give a higher productivity.
+
+
+
+////////////////////////
+/                      /
+////////////////////////
+
+Drawback of MySQL
+
+    MySQL version less than 5.0 doesn't support ROLE, COMMIT and stored procedure.
+    MySQL does not support a very large database size as efficiently.
+    MySQL doesn't handle transactions very efficiently and it is prone to data corruption.
+    MySQL is accused that it doesn't have a good developing and debugging tool compared to paid databases.
+    MySQL doesn't support SQL check constraints.
+
+////////////////////////////////////////
+/                                      /
+/                                      /
+/                                      /
+////////////////////////////////////////
+MySQL Data Types
+
+suports a lot of data TypeS
+broken into numeric, time, and strings
+
+////////////////////////
+/                      /
+////////////////////////
+
+Numeric Data Type
+INT 	A normal-sized integer that can be signed or unsigned. If signed, the allowable range is from -2147483648 to 2147483647. If unsigned, the allowable range is from 0 to 4294967295. You can specify a width of up to 11 digits.
+TINYINT 	A very small integer that can be signed or unsigned. If signed, the allowable range is from -128 to 127. If unsigned, the allowable range is from 0 to 255. You can specify a width of up to 4 digits.
+SMALLINT 	A small integer that can be signed or unsigned. If signed, the allowable range is from -32768 to 32767. If unsigned, the allowable range is from 0 to 65535. You can specify a width of up to 5 digits.
+MEDIUMINT 	A medium-sized integer that can be signed or unsigned. If signed, the allowable range is from -8388608 to 8388607. If unsigned, the allowable range is from 0 to 16777215. You can specify a width of up to 9 digits.
+BIGINT 	A large integer that can be signed or unsigned. If signed, the allowable range is from -9223372036854775808 to 9223372036854775807. If unsigned, the allowable range is from 0 to 18446744073709551615. You can specify a width of up to 20 digits.
+FLOAT(m,d) 	A floating-point number that cannot be unsigned. You can define the display length (m) and the number of decimals (d). This is not required and will default to 10,2, where 2 is the number of decimals and 10 is the total number of digits (including decimals). Decimal precision can go to 24 places for a float.
+DOUBLE(m,d) 	A double precision floating-point number that cannot be unsigned. You can define the display length (m) and the number of decimals (d). This is not required and will default to 16,4, where 4 is the number of decimals. Decimal precision can go to 53 places for a double. Real is a synonym for double.
+DECIMAL(m,d) 	An unpacked floating-point number that cannot be unsigned. In unpacked decimals, each decimal corresponds to one byte. Defining the display length (m) and the number of decimals (d) is required. Numeric is a synonym for decimal.
+
+////////////////////////
+/                      /
+////////////////////////
+Date and Time Data Type:
+DATE 	Values range from '1000-01-01' to '9999-12-31'. 	Displayed as 'yyyy-mm-dd'.
+DATETIME 	Values range from '1000-01-01 00:00:00' to '9999-12-31 23:59:59'. 	Displayed as 'yyyy-mm-dd hh:mm:ss'.
+TIMESTAMP(m) 	Values range from '1970-01-01 00:00:01' UTC to '2038-01-19 03:14:07' TC. 	Displayed as 'YYYY-MM-DD HH:MM:SS'.
+TIME 	Values range from '-838:59:59' to '838:59:59'. 	Displayed as 'HH:MM:SS'.
+YEAR[(2|4)] 	Year value as 2 digits or 4 digits. 	Default is 4 digits.
+
+
+////////////////////////
+/                      /
+////////////////////////
+
+String Data TypeS
+CHAR(size) 	Maximum size of 255 characters. 	Where size is the number of characters to store. Fixed-length strings. Space padded on right to equal size characters.
+VARCHAR(size) 	Maximum size of 255 characters. 	Where size is the number of characters to store. Variable-length string.
+TINYTEXT(size) 	Maximum size of 255 characters. 	Where size is the number of characters to store.
+TEXT(size) 	Maximum size of 65,535 characters. 	Where size is the number of characters to store.
+MEDIUMTEXT(size) 	Maximum size of 16,777,215 characters. 	Where size is the number of characters to store.
+LONGTEXT(size) 	Maximum size of 4GB or 4,294,967,295 characters. 	Where size is the number of characters to store.
+BINARY(size) 	Maximum size of 255 characters. 	Where size is the number of binary characters to store. Fixed-length strings. Space padded on right to equal size characters.
+(introduced in MySQL 4.1.2)
+VARBINARY(size) 	Maximum size of 255 characters.        Where size is the number of characters to store. Variable-length string.
+(introduced in MySQL 4.1.2)
+
+////////////////////////
+/                      /
+////////////////////////
+Large Object Data Types (LOB) Data Types:
+Data Type Syntax 	Maximum Size
+TINYBLOB 	Maximum size of 255 bytes.
+BLOB(size) 	Maximum size of 65,535 bytes.
+MEDIUMBLOB 	Maximum size of 16,777,215 bytes.
+LONGTEXT 	Maximum size of 4gb or 4,294,967,295 characters.
