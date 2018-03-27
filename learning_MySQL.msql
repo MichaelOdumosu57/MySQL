@@ -768,4 +768,122 @@ Suppose that you have several pets in your home (your menagerie) and you would l
                         -> WHERE MONTH(birth) = MOD(MONTH(CURDATE()), 12) + 1;
 
 
-                LEFT OFF AT https://dev.mysql.com/doqc/refman/5.7/en/working-with-null.html
+
+                3.3.4.6 Working with NULL Values
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                to test for NULL
+                -[ the result of any arithmetic comparison with NULL is also NULL
+                -[ In MySQL, 0 or NULL means false and anything else means true.
+                -[ NULL means not having a value 0 and '' have values
+                  The default truth value from a boolean operation is 1.
+                    mysql> SELECT 1 IS NULL, 1 IS NOT NULL;
+
+
+                3.3.4.7 Pattern Matching
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                LIKE or NOT LIKE
+                to find begin w/ b
+                    mysql> SELECT * FROM pet WHERE name LIKE 'b%';
+
+                to find ending in fy
+                    mysql> SELECT * FROM pet WHERE name LIKE '%fy';
+
+                to find containing
+                    mysql> SELECT * FROM pet WHERE name LIKE '%w%';
+
+                To find names containing exactly x characters, use x instances of the _ pattern character:
+                    mysql> SELECT * FROM pet WHERE name LIKE '_____';
+
+
+                  ////////////////////////
+                  /                      /
+                  ////////////////////////
+                  For other expressions use REGEXP and NOT REGEXP  (or synonyms RLIKE and NOT RLIKE, ).
+                  To find names beginning with b, use ^ to match the beginning of the name:
+                      mysql> SELECT * FROM pet WHERE name REGEXP '^b';
+
+                  use the BINARY keyword to make one of the strings a binary string.
+                  This query matches only lowercase b at the beginning of a name:
+                      SELECT * FROM pet WHERE name REGEXP BINARY '^b';
+
+                   To find names ending with fy, use $ to match the end of the name:
+                      mysql> SELECT * FROM pet WHERE name REGEXP 'fy
+
+                  To find names containing a w, use this query:
+                      mysql> SELECT * FROM pet WHERE name REGEXP 'w';
+
+                  To find names containing exactly five characters, use ^ and $
+                  to match the beginning and end of the name, and five instances of . in between:
+                      mysql> SELECT * FROM pet WHERE name REGEXP '^.....$';
+                      mysql> SELECT * FROM pet WHERE name REGEXP '^.{5}$';
+
+
+                  3.3.4.8 Counting Rows
+                  ////////////////////////
+                  /                      /
+                  ////////////////////////
+                  to count the rows in your table
+                      mysql> SELECT COUNT(*) FROM pet;
+
+                  to understand the group properties of rows use GROUP BY statements
+                      mysql> SELECT owner, COUNT(*) FROM pet GROUP BY owner;
+
+                  to combine
+                      mysql> SELECT species, sex, COUNT(*) FROM pet GROUP BY species, sex;
+
+                  to query for what is needed
+                      mysql> SELECT species, sex, COUNT(*) FROM pet
+                          -> WHERE species = 'dog' OR species = 'cat'
+                          -> GROUP BY species, sex;
+
+
+                  ////////////////////////
+                  /                      /
+                  ////////////////////////
+                   If ONLY_FULL_GROUP_BY is not enabled, the query is processed by treating all rows as a single group,
+                   but the value selected for each named column is indeterminate. The server is free to select the value from any row:
+                        mysql> SET sql_mode = '';
+                        mysql> SELECT owner, COUNT(*) FROM pet;
+
+
+                  3.3.4.9 Using More Than one Table
+                  ////////////////////////
+                  /                      /
+                  ////////////////////////
+                  you want to record other information about them, such as events in their lives
+                  like visits to the vet or when litters are born,
+                   you need another table.
+
+                   create another table
+                   mysql> CREATE TABLE event (name VARCHAR(20), date DATE,
+                      -> type VARCHAR(15), remark VARCHAR(255));
+
+
+                  ////////////////////////
+                  /                      /
+                  ////////////////////////
+                  Suppose you need 2 tables to perform a task
+                  -[ FROM joins the tables
+                  -[ the ON clause joins the 2 tables providing a condition to join them
+                  -[ INNER JOIN , joins the tables based on the ON condition, if the condition fails the row does not appear
+                  -[ to be specific about which column you are using make sure to compare using [table].[column]
+                  mysql> SELECT pet.name,
+                      -> TIMESTAMPDIFF(YEAR,birth,date) AS age,
+                      -> remark
+                      -> FROM pet INNER JOIN event
+                      ->   ON pet.name = event.name
+                      -> WHERE event.type = 'litter';
+
+
+                  ////////////////////////
+                  /                      /
+                  ////////////////////////
+                  You can also join a table to itself
+                  -[ in the FROM statement, we use variables to make copies of the tables
+                  mysql> SELECT p1.name, p1.sex, p2.name, p2.sex, p1.species
+                    -> FROM pet AS p1 INNER JOIN pet AS p2
+                    ->   ON p1.species = p2.species AND p1.sex = 'f' AND p2.sex = 'm';
