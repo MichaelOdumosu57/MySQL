@@ -51,10 +51,14 @@ MY SQL HISTORY
     Relational Database Management System (RDBMS): MySQL is a relational database management system.
     Easy to use: MySQL is easy to use. You have to get only the basic knowledge of SQL. You can build and interact with MySQL with only a few simple SQL statements.
     It is secure: MySQL consist of a solid data security layer that protects sensitive data from intruders. Passwords are encrypted in MySQL.
-    Client/ Server Architecture: MySQL follows a client /server architecture. There is a database server (MySQL) and arbitrarily many clients (application programs), which communicate with the server; that is, they query data, save changes, etc.
+    Client/ Server Architecture: MySQL follows a client /server architecture. There is a database server (MySQL) and arbitrarily many clients (application programs),
+     which communicate with the server; that is, they query data, save changes, etc.
     Free to download: MySQL is free to use and you can download it from MySQL official website.
-    It is scalable: MySQL can handle almost any amount of data, up to as much as 50 million rows or more. The default file size limit is about 4 GB. However, you can increase this number to a theoretical limit of 8 TB of data.
-    Compatibale on many operating systems: MySQL is compatible to run on many operating systems, like Novell NetWare, Windows* Linux*, many varieties of UNIX* (such as Sun* Solaris*, AIX, and DEC* UNIX), OS/2, FreeBSD*, and others. MySQL also provides a facility that the clients can run on the same computer as the server or on another computer (communication via a local network or the Internet).
+    It is scalable: MySQL can handle almost any amount of data, up to as much as 50 million rows or more.
+    The default file size limit is about 4 GB. However, you can increase this number to a theoretical limit of 8 TB of data.
+    Compatibale on many operating systems: MySQL is compatible to run on many operating systems,
+    like Novell NetWare, Windows* Linux*, many varieties of UNIX*
+    (such as Sun* Solaris*, AIX, and DEC* UNIX), OS/2, FreeBSD*, and others. MySQL also provides a facility that the clients can run on the same computer as the server or on another computer (communication via a local network or the Internet).
     Allows roll-back: MySQL allows transactions to be rolled back, commit and crash recovery.
     High Performance: MySQL is faster, more reliable and cheaper because of its unique storage engine architecture.
     High Flexibility: MySQL supports a large number of embedded applications which makes MySQL very flexible.
@@ -89,14 +93,32 @@ broken into numeric, time, and strings
 ////////////////////////
 
 Numeric Data Type
-INT 	A normal-sized integer that can be signed or unsigned. If signed, the allowable range is from -2147483648 to 2147483647. If unsigned, the allowable range is from 0 to 4294967295. You can specify a width of up to 11 digits.
-TINYINT 	A very small integer that can be signed or unsigned. If signed, the allowable range is from -128 to 127. If unsigned, the allowable range is from 0 to 255. You can specify a width of up to 4 digits.
-SMALLINT 	A small integer that can be signed or unsigned. If signed, the allowable range is from -32768 to 32767. If unsigned, the allowable range is from 0 to 65535. You can specify a width of up to 5 digits.
-MEDIUMINT 	A medium-sized integer that can be signed or unsigned. If signed, the allowable range is from -8388608 to 8388607. If unsigned, the allowable range is from 0 to 16777215. You can specify a width of up to 9 digits.
-BIGINT 	A large integer that can be signed or unsigned. If signed, the allowable range is from -9223372036854775808 to 9223372036854775807. If unsigned, the allowable range is from 0 to 18446744073709551615. You can specify a width of up to 20 digits.
-FLOAT(m,d) 	A floating-point number that cannot be unsigned. You can define the display length (m) and the number of decimals (d). This is not required and will default to 10,2, where 2 is the number of decimals and 10 is the total number of digits (including decimals). Decimal precision can go to 24 places for a float.
-DOUBLE(m,d) 	A double precision floating-point number that cannot be unsigned. You can define the display length (m) and the number of decimals (d). This is not required and will default to 16,4, where 4 is the number of decimals. Decimal precision can go to 53 places for a double. Real is a synonym for double.
-DECIMAL(m,d) 	An unpacked floating-point number that cannot be unsigned. In unpacked decimals, each decimal corresponds to one byte. Defining the display length (m) and the number of decimals (d) is required. Numeric is a synonym for decimal.
+INT 	A normal-sized integer that can be signed or unsigned.
+If signed, the allowable range is from -2147483648 to 2147483647.
+If unsigned, the allowable range is from 0 to 4294967295. You can specify a width of up to 11 digits.
+TINYINT 	A very small integer that can be signed or unsigned.
+ If signed, the allowable range is from -128 to 127.
+ If unsigned, the allowable range is from 0 to 255. You can specify a width of up to 4 digits.
+SMALLINT 	A small integer that can be signed or unsigned.
+If signed, the allowable range is from -32768 to 32767.
+If unsigned, the allowable range is from 0 to 65535. You can specify a width of up to 5 digits.
+MEDIUMINT 	A medium-sized integer that can be signed or unsigned.
+If signed, the allowable range is from -8388608 to 8388607.
+If unsigned, the allowable range is from 0 to 16777215. You can specify a width of up to 9 digits.
+BIGINT 	A large integer that can be signed or unsigned.
+If signed, the allowable range is from -9223372036854775808 to 9223372036854775807.
+ If unsigned, the allowable range is from 0 to 18446744073709551615. You can specify a width of up to 20 digits.
+FLOAT(m,d) 	A floating-point number that cannot be unsigned.
+ You can define the display length (m) and the number of decimals (d).
+ This is not required and will default to 10,2, where 2 is the number of decimals and 10 is the total number of digits (including decimals).
+  Decimal precision can go to 24 places for a float.
+DOUBLE(m,d) 	A double precision floating-point number that cannot be unsigned.
+ You can define the display length (m) and the number of decimals (d).
+ This is not required and will default to 16,4, where 4 is the number of decimals.
+ Decimal precision can go to 53 places for a double. Real is a synonym for double.
+DECIMAL(m,d) 	An unpacked floating-point number that cannot be unsigned
+. In unpacked decimals, each decimal corresponds to one byte.
+Defining the display length (m) and the number of decimals (d) is required. Numeric is a synonym for decimal.
 
 ////////////////////////
 /                      /
@@ -114,13 +136,15 @@ YEAR[(2|4)] 	Year value as 2 digits or 4 digits. 	Default is 4 digits.
 ////////////////////////
 
 String Data TypeS
-CHAR(size) 	Maximum size of 255 characters. 	Where size is the number of characters to store. Fixed-length strings. Space padded on right to equal size characters.
+CHAR(size) 	Maximum size of 255 characters. 	Where size is the number of characters to store.
+ Fixed-length strings. Space padded on right to equal size characters.
 VARCHAR(size) 	Maximum size of 255 characters. 	Where size is the number of characters to store. Variable-length string.
 TINYTEXT(size) 	Maximum size of 255 characters. 	Where size is the number of characters to store.
 TEXT(size) 	Maximum size of 65,535 characters. 	Where size is the number of characters to store.
 MEDIUMTEXT(size) 	Maximum size of 16,777,215 characters. 	Where size is the number of characters to store.
 LONGTEXT(size) 	Maximum size of 4GB or 4,294,967,295 characters. 	Where size is the number of characters to store.
-BINARY(size) 	Maximum size of 255 characters. 	Where size is the number of binary characters to store. Fixed-length strings. Space padded on right to equal size characters.
+BINARY(size) 	Maximum size of 255 characters. 	Where size is the number of binary characters to store.
+Fixed-length strings. Space padded on right to equal size characters.
 (introduced in MySQL 4.1.2)
 VARBINARY(size) 	Maximum size of 255 characters.        Where size is the number of characters to store. Variable-length string.
 (introduced in MySQL 4.1.2)
@@ -478,4 +502,108 @@ restart
             '> '\c
         mysql>
 
-     rmbr to supply the terminating quote before you can cancel the current query. 
+     rmbr to supply the terminating quote before you can cancel the current query.
+
+Suppose that you have several pets in your home (your menagerie) and you would like to keep track of various types of information about them. You can do so by creating tables to hold your data and loading them with the desired information
+
+
+     ////////////////////////////////////////
+     /                                      /
+     /                                      /
+     /                                      /
+     ////////////////////////////////////////
+     3.3 Creating and Using a Database
+
+
+     Suppose that you have several pets in your home (your menagerie) and you would like to keep track
+     of various types of information about them.
+     You can do so by creating tables to hold your data and loading them with the desired information
+
+         ////////////////////////
+         /                      /
+         ////////////////////////
+        Use the SHOW statement to find out what databases currently exist on the server:
+            mysql> SHOW DATABASES;
+            The mysql database describes user access privileges.
+             The test database often is available as a workspace for users to try things out.
+
+             mysql> USE test
+             USE does not require a semicolon but it must be given on a single
+
+         ////////////////////////
+         /                      /
+         ////////////////////////
+         to make your own private database
+            mysql> GRANT ALL ON [database_name].* TO ['your_mysql_name']@['your_client_host'];
+
+        3.3.1
+        ////////////////////////
+        /                      /
+        ////////////////////////
+        to create your own database
+            mysql> CREATE DATABASE menagerie;
+
+        ////////////////////////
+        /                      /
+        ////////////////////////
+        to make meangerie the current database
+        database needs to be created only once, but you must select it for use each time you begin a mysql session.
+            mysql> USE menagerie
+
+        ////////////////////////
+        /                      /
+        ////////////////////////
+        to set the database upon opening SQL
+            shell> mysql -h host -u user -p
+
+      ////////////////////////
+      /                      /
+      ////////////////////////
+       to see which database is selected
+        SELECT DATABASE();
+
+
+       3.3.2 Creating a Table
+       ////////////////////////
+       /                      /
+       ////////////////////////
+       to see what table are in a database
+          mysql> SHOW TABLES;
+
+      ////////////////////////
+      /                      /
+      ////////////////////////
+      Use a CREATE TABLE statement to specify the layout of your table:
+        mysql> CREATE TABLE pet (name VARCHAR(20), owner VARCHAR(20),
+                -> species VARCHAR(20), sex CHAR(1), birth DATE, death DATE);
+
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                to see table as intended use a describe statement
+                    mysql> DESCRIBE pet;
+
+
+
+        3.3.3 Loading Data into a Table
+        -[ MySQL expects dates in 'YYYY-MM-DD'
+        ////////////////////////
+        /                      /
+        ////////////////////////
+        to load data into the table
+            make a txt file here known as pet.txt
+            -[ tab represents the whitespace reflecting to proper population of table fields
+            -[ \N is used to represent null
+
+            To load the text file pet.txt into the pet table, use this statement:
+                mysql> LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet;
+
+
+        ////////////////////////
+        /                      /
+        ////////////////////////
+        when you want  to add data one at a time
+        -[Also, with INSERT, you can insert NULL directly to represent a missing value
+        mysql> INSERT INTO pet
+                -> VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);
