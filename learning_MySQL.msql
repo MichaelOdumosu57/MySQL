@@ -597,7 +597,7 @@ Suppose that you have several pets in your home (your menagerie) and you would l
             -[ \N is used to represent null
 
             To load the text file pet.txt into the pet table, use this statement:
-                mysql> LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet;
+                mysql> LOAD DATA LOCAL INFILE '/path/petDownloads Documentation Developer Zone .txt' INTO TABLE pet;
 
 
         ////////////////////////
@@ -607,3 +607,165 @@ Suppose that you have several pets in your home (your menagerie) and you would l
         -[Also, with INSERT, you can insert NULL directly to represent a missing value
         mysql> INSERT INTO pet
                 -> VALUES ('Puffball','Diane','hamster','f','1999-03-30',NULL);
+
+
+        3.3.4 Retrieving Information from a Table
+        ////////////////////////
+        /                      /
+        ////////////////////////
+        to pull info from a table
+        -[ what_to_select
+              what you want to see. This can be a list of columns, or * to indicate “all columns.”
+        -[which_table
+              from which table
+        -[ WHERE is optional, it specifies what to retreive from a table  under conditions
+            SELECT what_to_select
+            FROM which_table
+            WHERE conditions_to_satisfy;
+
+
+
+                3.3.4.1 Selecting All Data
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                to select all data from table
+                    mysql> SELECT * FROM pet;
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                if you want to fix a mistake do so with an UPDATE statement
+                -[ make sure to populate pet.txt with the proper info
+                    mysql> DELETE FROM pet;
+                    mysql> LOAD DATA LOCAL INFILE '/path/pet.txt' INTO TABLE pet
+                    mysql> UPDATE pet SET birth = '1989-08-31' WHERE name = 'Bowser';
+
+
+                3.3.4.2 Selecting Particular Rows
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                to select certain rows
+                mysql> SELECT * FROM pet WHERE name = 'Bowser';
+                    to know which animals are born after 1998
+                        mysql> SELECT * FROM pet WHERE birth >= '1998-1-1';
+                    to combine conditions
+                        mysql> SELECT * FROM pet WHERE species = 'dog' AND sex = 'f';
+                    the OR operator
+                        mysql> SELECT * FROM pet WHERE species = 'snake' OR species = 'bird';
+                    when combine AND & OR AND is higher. Use ()
+                        mysql> SELECT * FROM pet WHERE (species = 'cat' AND sex = 'm')
+                                -> OR (species = 'dog' AND sex = 'f');
+
+
+                3.3.4.3 Selecting Particular Columns
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                to select comlums
+                    mysql> SELECT [column1], [column2] FROM pet;
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                to minimize repeated output use DISTINCT
+                      mysql> SELECT DISTINCT owner FROM pet;
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                to combine columns with the WHERE statement
+                    mysql> SELECT name, species, birth FROM pet
+                          -> WHERE species = 'dog' OR species = 'cat';
+
+                3.3.4.4 Sorting Rows
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                to sort rows in a meaningful order use the ORDER BY statement
+                    mysql> SELECT name, birth FROM pet ORDER BY birth;
+                    to be case sensitive use BINARY
+                    -[ capitalized letters will be shown first
+                        ORDER BY BINARY col_name;
+                    to descend use DESC
+                    -[ it only affects the keyword preceeding it
+                        ORDER BY birth DESC;
+
+                  ////////////////////////
+                  /                      /
+                  ////////////////////////
+                  to perform a numerical sort
+                  -[ SQL sorts by species first then birth if species fields are the same in DESC BINARY or
+                      ascending order as specified
+                  mysql> SELECT name, species, birth FROM pet
+                      -> ORDER BY species, birth DESC;
+
+
+                3.3.4.5 Date Calculations
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                to see how old each pet is use TIMESTAMPDIFF() function like This
+                -[  CURDATE() is the current date
+                -[  it will make an age column but will not save it
+                mysql> SELECT name, birth, CURDATE(),
+                      -> TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age
+                      -> FROM pet;
+
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                to order it by name
+                mysql> SELECT name, birth, CURDATE(),
+                    -> TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age
+                    -> FROM pet ORDER BY name;
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                to check against a NULL use the IS NOT statement
+                mysql> SELECT name, birth, death,
+                    -> TIMESTAMPDIFF(YEAR,birth,death) AS age
+                    -> FROM pet WHERE death IS NOT NULL ORDER BY age;
+
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                MySQL provides several functions for extracting parts of dates,
+                such as YEAR(), MONTH(), and DAYOFMONTH().
+                      mysql> SELECT name, birth, MONTH(birth) FROM pet;
+
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                finding birthdays of a certain month say May
+                    mysql> SELECT name, birth FROM pet WHERE MONTH(birth) = 5;
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                to select a birthday an interval away from the current date
+                -[ INTERVAL statement represents the interval 1 month betweem this month and the next
+                mysql> SELECT name, birth FROM pet
+                    -> WHERE MONTH(birth) = MONTH(DATE_ADD(CURDATE(),INTERVAL 1 MONTH));
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                the MOD statement
+                -[ MOD is an array changer for months the
+                -[ the first arg is the date part
+                -[ the 2nd part is the desired date value
+                -[ MONTH() returns a number between 1 and 12.
+                  And MOD(something,12) returns a number between 0 and 11.
+                  So the addition has to be after the MOD(), otherwise we would go from November (11) to January (1).
+                -[[ NOT EXACTLY CHECK BACK LATER
+                    mysql> SELECT name, birth FROM pet
+                        -> WHERE MONTH(birth) = MOD(MONTH(CURDATE()), 12) + 1;
+
+
+                LEFT OFF AT https://dev.mysql.com/doqc/refman/5.7/en/working-with-null.html
