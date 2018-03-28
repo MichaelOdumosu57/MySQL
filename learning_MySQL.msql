@@ -887,3 +887,92 @@ Suppose that you have several pets in your home (your menagerie) and you would l
                   mysql> SELECT p1.name, p1.sex, p2.name, p2.sex, p1.species
                     -> FROM pet AS p1 INNER JOIN pet AS p2
                     ->   ON p1.species = p2.species AND p1.sex = 'f' AND p2.sex = 'm';
+
+                    LEFT OFF AT https://dev.mysql.com/doc/refman/5.7/en/multiple-tables.html
+
+        3.4 Getting Information About Databases and Tables
+        ////////////////////////////////////////
+        /                                      /
+        /                                      /
+        /                                      /
+        ////////////////////////////////////////
+        stuff you have learned
+
+
+
+        3.5 Using mysql in Batch Mode
+        ////////////////////////////////////////
+        /                                      /
+        /                                      /
+        /                                      /
+        ////////////////////////////////////////
+        to have sql comnads read from a batch file use this
+        -[ some queries cannot be done interactively such as cron mode
+            shell> mysql < batch-file
+
+            ////////////////////////
+            /                      /
+            ////////////////////////
+            to specify command line connection parameters
+            shell> mysql -h host -u user -p < batch-file
+                Enter password: ********
+
+            ////////////////////////
+            /                      /
+            ////////////////////////
+            to continue even if it makes errors use --force
+
+            ////////////////////////
+            /                      /
+            ////////////////////////
+            If you have a query that produces a lot of output, you can run
+            the output through a pager rather than watching it scroll off the top of your screen:
+                  shell> mysql < batch-file | more
+
+
+
+            ////////////////////////
+            /                      /
+            ////////////////////////
+            to catch in an output file
+
+                shell> mysql < batch-file > mysql.out
+
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                interactive
+                +---------+
+                | species |
+                +---------+
+                | bird    |
+                | cat     |
+                | dog     |
+                | hamster |
+                | snake   |
+                +---------+
+
+                batch mode
+                species
+                bird
+                cat
+                dog
+                hamster
+                snake
+
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                 If you want to get the interactive output format in batch mode, use mysql -t.
+                 To echo to the output the statements that are executed, use mysql -v.
+
+
+      3.6 Examples of Common Queries
+      ////////////////////////////////////////
+      /                                      /
+      /                                      /
+      /                                      /
+      ////////////////////////////////////////
+      https://dev.mysql.com/doc/refman/5.7/en/examples.html
