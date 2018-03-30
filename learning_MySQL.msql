@@ -975,4 +975,124 @@ Suppose that you have several pets in your home (your menagerie) and you would l
       /                                      /
       /                                      /
       ////////////////////////////////////////
-      https://dev.mysql.com/doc/refman/5.7/en/examples.html
+      solving common problems
+
+      example
+      ////////////////////////
+      /                      /
+      ////////////////////////
+      CREATE TABLE shop (
+    article INT(4) UNSIGNED ZEROFILL DEFAULT '0000' NOT NULL,
+    dealer  CHAR(20)                 DEFAULT ''     NOT NULL,
+    price   DOUBLE(16,2)             DEFAULT '0.00' NOT NULL,
+    PRIMARY KEY(article, dealer));
+INSERT INTO shop VALUES
+    (1,'A',3.45),(1,'B',3.99),(2,'A',10.99),(3,'B',1.45),
+    (3,'C',1.69),(3,'D',1.25),(4,'D',19.95);
+
+
+
+          3.6.1 The Maximum Value for a Column
+          ////////////////////////
+          /                      /
+          ////////////////////////
+              SELECT MAX(article) AS article FROM shop;
+
+
+          3.6.2 The Row Holding the Maximum of a Certain Column
+          ////////////////////////
+          /                      /
+          ////////////////////////
+          Task: Find the number, dealer, and price of the most expensive article.
+              SELECT article, dealer, price
+              FROM   shop
+              WHERE  price=(SELECT MAX(price) FROM shop);
+
+
+              ////////////////////////
+              /                      /
+              ////////////////////////
+              USE a LEFT JOIN
+              SELECT s1.article, s1.dealer, s1.price
+              FROM shop s1
+              LEFT JOIN shop s2 ON s1.price < s2.price
+              WHERE s2.article IS NULL;
+
+              ////////////////////////
+              /                      /
+              ////////////////////////
+              USE the LIMIT  clause:
+              SELECT article, dealer, price
+              FROM shop
+              ORDER BY price DESC
+              LIMIT 1;
+
+          3.6.3 Maximum of Column per Group
+          ////////////////////////
+          /                      /
+          ////////////////////////
+          Task: Find the highest price per article.
+          SELECT article, MAX(price) AS price
+          FROM   shop
+          GROUP BY article;
+
+
+          3.6.4 The Rows Holding the Group-wise Maximum of a Certain Column
+          ////////////////////////
+          /                      /
+          ////////////////////////
+          Task: For each article, find the dealer or dealers with the most expensive price.
+          SELECT article, dealer, price
+          FROM   shop s1
+          WHERE  price=(SELECT MAX(s2.price)
+                        FROM shop s2
+                        WHERE s1.article = s2.article);
+
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                Uncorrelated subquery:
+                      SELECT s1.article, dealer, s1.price
+                      FROM shop s1
+                      JOIN (
+                        SELECT article, MAX(price) AS price
+                        FROM shop
+                        GROUP BY article) AS s2
+                        ON s1.article = s2.article AND s1.price = s2.price;
+
+                ////////////////////////
+                /                      /
+                ////////////////////////
+                LEFT JOIN:
+                    SELECT s1.article, s1.dealer, s1.price
+                    FROM shop s1
+                    LEFT JOIN shop s2 ON s1.article = s2.article AND s1.price < s2.price
+                    WHERE s2.article IS NULL;
+
+
+      3.6.5 Using User-Defined Variables
+      ////////////////////////
+      /                      /
+      ////////////////////////
+      For example, to find the articles with the highest and lowest price you can do this:
+      mysql> SELECT @min_price:=MIN(price),@max_price:=MAX(price) FROM shop;
+      mysql> SELECT * FROM shop WHERE price=@min_price OR price=@max_price;
+
+
+
+      3.6.6 Using Foreign Keys
+      ////////////////////////
+      /                      /
+      ////////////////////////
+      file:foreign_keys.bat
+      My SQL is not reactive, it has no event listeners
+
+      basically what happened here is you used another table data to retrieve info about a another table
+      AUTO_INCREMENT is for columns that need number values
+
+      to init
+      id [number_type] UNSIGNED NOT NULL AUTO_INCREMENT,
+
+      to insert      
+      INSERT INTO person VALUES (NULL, 'Lilliana Angelovska');
