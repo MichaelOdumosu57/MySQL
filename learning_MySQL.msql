@@ -1,4 +1,4 @@
-https://www.javatpoint.com/how-to-install-mysql
+  https://www.javatpoint.com/how-to-install-mysql
 https://dev.mysql.com/doc/refman/5.7/en/linux-installation-docker.html
 
 learning MySQL
@@ -986,7 +986,7 @@ Suppose that you have several pets in your home (your menagerie) and you would l
     dealer  CHAR(20)                 DEFAULT ''     NOT NULL,
     price   DOUBLE(16,2)             DEFAULT '0.00' NOT NULL,
     PRIMARY KEY(article, dealer));
-INSERT INTO shop VALUES
+    INSERT INTO shop VALUES
     (1,'A',3.45),(1,'B',3.99),(2,'A',10.99),(3,'B',1.45),
     (3,'C',1.69),(3,'D',1.25),(4,'D',19.95);
 
@@ -1094,5 +1094,61 @@ INSERT INTO shop VALUES
       to init
       id [number_type] UNSIGNED NOT NULL AUTO_INCREMENT,
 
-      to insert      
+      to insert
       INSERT INTO person VALUES (NULL, 'Lilliana Angelovska');
+
+
+
+      3.6.7 Searching on Two Keys
+      ////////////////////////
+      /                      /
+      ////////////////////////
+      file: 3_6_7optimize.bat
+       The one tricky case is that of searching on two different keys combined with OR:
+
+
+
+       3.6.8 Calculating Visits Per Day
+       ////////////////////////
+       /                      /
+       ////////////////////////
+        use the bit group functions to calculate the number
+         of days per month a user has visited a Web page.
+
+
+
+         //////////
+         //
+         /////////
+         CREATE TABLE t1 (year YEAR(4), month INT(2) UNSIGNED ZEROFILL,
+             day INT(2) UNSIGNED ZEROFILL);
+             INSERT INTO t1 VALUES(2000,1,1),(2000,1,20),(2000,1,30),(2000,2,2),
+            (2000,2,23),(2000,2,23);
+
+             use this query:
+             SELECT year,month,BIT_COUNT(BIT_OR(1<<day)) AS days FROM t1
+                GROUP BY year,month;
+
+            look at the table to see the difference :)
+            //////////
+            //
+            /////////
+
+
+
+        3.6.9 Using AUTO_INCREMENT
+        ////////////////////////
+        /                      /
+        ////////////////////////
+        To start with an AUTO_INCREMENT value other than 1
+         set that value with CREATE TABLE or ALTER TABLE, like this:
+
+                mysql> ALTER TABLE tbl AUTO_INCREMENT = 100;
+
+
+        ////////////////////////
+        /                      /
+        ////////////////////////
+        MyISAM
+        the MyISAM  table is a table prepared to handle rows as groups
+         if you look in the file for this train you will understand
